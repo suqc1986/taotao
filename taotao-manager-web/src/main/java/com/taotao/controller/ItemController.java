@@ -1,14 +1,14 @@
 package com.taotao.controller;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.taotao.common.pojo.EasyUIDDataGridResult;
+import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.pojo.TbItem;
 import com.taotao.service.ItemService;
 
@@ -25,5 +25,17 @@ public class ItemController {
 	@ResponseBody
 	public EasyUIDDataGridResult getItemList(int page ,int rows){
 		return itemService.getItemList(page, rows);
+	}
+	@RequestMapping(value="/item/save",method=RequestMethod.POST)
+	@ResponseBody
+	public TaotaoResult addItem(TbItem item,String desc){
+		try {
+			TaotaoResult result = itemService.createItem(item, desc);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return TaotaoResult.build(500, "添加商品失败");
+		}
+		
 	}
 }
