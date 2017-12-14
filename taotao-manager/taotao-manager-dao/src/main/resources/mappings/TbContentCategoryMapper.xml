@@ -110,6 +110,16 @@
       #{status,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, #{isParent,jdbcType=BIT}, 
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
+  <insert id="saveAndGetId" parameterType="com.taotao.pojo.TbContentCategory"   
+             useGeneratedKeys="true" keyProperty="id">  
+    insert into tb_content_category (parent_id, name, status, sort_order, is_parent, created, updated)  
+    values (#{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},   
+      #{status,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, #{isParent,jdbcType=BIT},   
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})  
+      <selectKey keyProperty="id" resultType="long" order="AFTER">  
+           SELECT LAST_INSERT_ID()  
+      </selectKey>  
+  </insert>  
   <insert id="insertSelective" parameterType="com.taotao.pojo.TbContentCategory" >
     insert into tb_content_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
