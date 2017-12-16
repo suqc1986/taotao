@@ -3,7 +3,7 @@ package com.taotao.common.pojo;
 import java.io.Serializable;
 import java.util.List;
 
-public class EasyUIDDataGridResult implements Serializable{
+public class EasyUIDataGridResult implements Serializable{
 	private long total;
 	private List rows;
 	public long getTotal() {

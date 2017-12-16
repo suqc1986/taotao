@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.taotao.common.pojo.EasyUIDDataGridResult;
+import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.IDUtils;
 import com.taotao.mapper.TbItemDescMapper;
@@ -30,12 +30,12 @@ public class ItemServiceImpl implements ItemService {
 		return item;
 	}
 	@Override
-	public EasyUIDDataGridResult getItemList(int page, int rows) {
+	public EasyUIDataGridResult getItemList(int page, int rows) {
 		PageHelper.startPage(page, rows);
 		TbItemExample example = new TbItemExample();
 		List<TbItem> list = itemMapper.selectByExample(example);
 		PageInfo<TbItem> pageInfo = new PageInfo<TbItem>(list);
-		EasyUIDDataGridResult result = new EasyUIDDataGridResult();
+		EasyUIDataGridResult result = new EasyUIDataGridResult();
 		result.setRows(list);
 		result.setTotal(pageInfo.getTotal());
 		return result;
