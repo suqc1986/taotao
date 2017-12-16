@@ -64,23 +64,34 @@ var contentListToolbar = [{
     		$.messager.alert('提示','只能选择一个内容!');
     		return ;
     	}
-		TT.createWindow({
-			url : "/content-edit",
-			onLoad : function(){
-				var data = $("#contentList").datagrid("getSelections")[0];
-				$("#contentEditForm").form("load",data);
-				
-				// 实现图片
-				if(data.pic){
-					$("#contentEditForm [name=pic]").after("<a href='"+data.pic+"' target='_blank'><img src='"+data.pic+"' width='80' height='50'/></a>");	
-				}
-				if(data.pic2){
-					$("#contentEditForm [name=pic2]").after("<a href='"+data.pic2+"' target='_blank'><img src='"+data.pic2+"' width='80' height='50'/></a>");					
-				}
-				
-				contentEditEditor.html(data.content);
-			}
-		});    	
+    	var number = 0;  
+        TT.createWindow({  
+            url : "/content-edit",  
+            onLoad : function(){  
+                number = number +1;  
+                if(number == 2){  
+                    return;  
+                }  
+                var node = $("#contentList").datagrid("getSelections")[0];  
+                var params = {"id":node.id};  
+                $.get("/content/getContent",params, function(data){  
+                    if(data.status == 200){  
+                        node = data.data;  
+                        $("#contentEditForm").form("load",node);  
+                          
+                        // 实现图片  
+                        if(node.pic){  
+                            $("#contentEditForm [name=pic]").after("<a href='"+node.pic+"' target='_blank'><img src='"+node.pic+"' width='80' height='50'/></a>");      
+                        }  
+                        if(node.pic2){  
+                            $("#contentEditForm [name=pic2]").after("<a href='"+node.pic2+"' target='_blank'><img src='"+node.pic2+"' width='80' height='50'/></a>");                   
+                        }  
+                          
+                        contentEditEditor.html(node.content);  
+                    }  
+                });  
+            }  
+        });       
     }
 },{
     text:'删除',
