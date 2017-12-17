@@ -30,8 +30,8 @@
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
         <!-- 设定默认编码 -->  
         <property name="defaultEncoding" value="UTF-8"></property>  
-        <!-- 设定文件上传的最大值5MB，5*1024*1024 -->  
-        <property name="maxUploadSize" value="5242880"></property>  
+        <!-- 设定文件上传的最大值50MB，5*1024*1024 -->  
+        <property name="maxUploadSize" value="52428800"></property>  
     </bean> 
     
     <!-- 引用dubbo服务 -->  
