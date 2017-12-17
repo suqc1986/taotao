@@ -75,6 +75,15 @@ public class ContentServiceImpl implements ContentService {
     public TaotaoResult getContent(long id) {  
         TbContent content = contentMapper.selectByPrimaryKey(id);  
         return TaotaoResult.ok(content);  
-    }  
+    }
+
+	@Override
+	public List<TbContent> getContentListByCid(long cid) {
+		 TbContentExample example = new TbContentExample();  
+	        Criteria criteria = example.createCriteria();  
+	        criteria.andCategoryIdEqualTo(cid);  
+	        List<TbContent> list = contentMapper.selectByExample(example);  
+	        return list;  
+	}  
   
 }  

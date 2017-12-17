@@ -1,5 +1,7 @@
 package com.taotao.content.service;
 
+import java.util.List;
+
 import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.pojo.TbContent;
@@ -15,4 +17,6 @@ public interface ContentService {
     TaotaoResult deleteContent(String ids);  
     //获取单个内容信息  
     TaotaoResult getContent(long id);  
+    //根据内容分类id来获取内容列表
+    List<TbContent> getContentListByCid(long cid);
 }
