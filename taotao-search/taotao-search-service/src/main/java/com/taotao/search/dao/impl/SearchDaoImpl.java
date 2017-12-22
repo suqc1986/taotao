@@ -2,8 +2,9 @@ package com.taotao.search.dao.impl;
   
 import java.util.ArrayList;  
 import java.util.List;  
-import java.util.Map;  
-  
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;  
 import org.apache.solr.client.solrj.SolrServer;  
 import org.apache.solr.client.solrj.response.QueryResponse;  
@@ -37,7 +38,12 @@ public class SearchDaoImpl implements SearchDao{
         for (SolrDocument solrDocument : solrDocumentList) {  
             SearchItem searchItem = new SearchItem();  
             searchItem.setId((String)solrDocument.get("id"));  
-            searchItem.setImage((String)solrDocument.get("item_image"));  
+//            searchItem.setImage((String)solrDocument.get("item_image"));  
+            String image = (String)solrDocument.get("item_image");  
+            if(!StringUtils.isBlank(image)){  
+                image = image.split(",")[0];  
+            }  
+            searchItem.setImage(image); 
             searchItem.setItem_category_name((String)solrDocument.get("item_category_name"));  
             searchItem.setItem_desc((String)solrDocument.get("item_desc"));  
             searchItem.setPrice((long)solrDocument.get("item_price"));  

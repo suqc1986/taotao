@@ -1,0 +1,8 @@
+服务
+taotao-manager     			 8080
+taotao-content				8083
+taotao-search					8084
+前台
+taotao-manager-web		8088		http://localhost:8088/
+taotao-search-web			8085		访问8082 -->搜索-->进入搜索页面
+taotao-portal-web			8082		http://localhost:8082/

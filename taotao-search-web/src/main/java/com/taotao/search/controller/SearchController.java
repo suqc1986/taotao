@@ -21,9 +21,10 @@ public class SearchController {
     public String search(@RequestParam("q") String queryString,  
             @RequestParam(defaultValue="1") Integer page,Model model){  
         try {  
-            //调用服务执行查询  
+        	queryString = new String(queryString.getBytes("iso8859-1"),"utf-8");
+            //璋冪敤鏈嶅姟鎵ц鏌ヨ  
             SearchResult searchResult = searchService.search(queryString, page, SEARCH_RESULT_ROWS);  
-            //把结果传递给页面  
+            //鎶婄粨鏋滀紶閫掔粰椤甸潰  
             model.addAttribute("query", queryString);  
             model.addAttribute("totalPages", searchResult.getTotalPages());  
             model.addAttribute("itemList", searchResult.getItemList());  
@@ -31,7 +32,7 @@ public class SearchController {
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-        //返回逻辑视图  
+        //杩斿洖閫昏緫瑙嗗浘  
         return "search";  
     }     
   

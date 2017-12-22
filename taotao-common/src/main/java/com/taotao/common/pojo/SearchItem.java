@@ -1,6 +1,8 @@
 package com.taotao.common.pojo;
 
-public class SearchItem {
+import java.io.Serializable;
+
+public class SearchItem implements Serializable{
 	private String id;  
 	private String title;  
 	private String sell_point;  
