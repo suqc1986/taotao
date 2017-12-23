@@ -21,7 +21,8 @@
     </bean>  
     <!-- 配置包扫描器，扫描@Controller注解的类 -->  
     <context:component-scan base-package="com.taotao.search.controller"/>  
-      
+       <!-- 加载全局异常处理器 -->  
+    <bean class="com.taotao.search.exception.GlobalExceptionResolver"/>  
       
     <!-- 引用dubbo服务 -->  
     <dubbo:application name="taotao-search-web"/>  

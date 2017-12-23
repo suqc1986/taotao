@@ -97,6 +97,11 @@
         <groupId>commons-fileupload</groupId>    
         <artifactId>commons-fileupload</artifactId>    
     </dependency>   
+    <!-- JMail组件 -->  
+	<dependency>  
+	    <groupId>com.sun.mail</groupId>  
+	    <artifactId>javax.mail</artifactId>  
+	</dependency>  
   </dependencies>  
   <build>  
     <plugins>  

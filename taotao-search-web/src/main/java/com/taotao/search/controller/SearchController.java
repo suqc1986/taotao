@@ -19,8 +19,9 @@ public class SearchController {
       
     @RequestMapping("/search")  
     public String search(@RequestParam("q") String queryString,  
-            @RequestParam(defaultValue="1") Integer page,Model model){  
-        try {  
+            @RequestParam(defaultValue="1") Integer page,Model model) throws Exception{  
+       // try {  
+    		//int aaa = 1/0;//演示全局异常!
         	queryString = new String(queryString.getBytes("iso8859-1"),"utf-8");
             //调用服务执行查询  
             SearchResult searchResult = searchService.search(queryString, page, SEARCH_RESULT_ROWS);  
@@ -29,9 +30,9 @@ public class SearchController {
             model.addAttribute("totalPages", searchResult.getTotalPages());  
             model.addAttribute("itemList", searchResult.getItemList());  
             model.addAttribute("page", page);  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
+        //} catch (Exception e) {  
+        //    e.printStackTrace();  
+     //   }  
         //返回逻辑视图  
         return "search";  
     }     
