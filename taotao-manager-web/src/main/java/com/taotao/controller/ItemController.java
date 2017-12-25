@@ -36,6 +36,13 @@ public class ItemController {
 			e.printStackTrace();
 			return TaotaoResult.build(500, "添加商品失败");
 		}
-		
+	}
+	@RequestMapping("/rest/page/item-edit")
+	public void editItem(Long itemId){
+		//TODO editItem
+	}
+	@RequestMapping("/rest/item/update")
+	public void updateItem(TbItem item){
+		//TODO updateItem
 	}
 }
