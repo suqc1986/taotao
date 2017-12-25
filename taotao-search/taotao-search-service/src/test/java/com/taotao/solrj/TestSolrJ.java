@@ -1,4 +1,4 @@
-package com.taotao.search.test;
+package com.taotao.solrj;
 
 import java.util.List;
 import java.util.Map;
