@@ -31,7 +31,7 @@ public class SendMail {
                 
             Transport trans = session.getTransport();    
             //下面四个参数，前两个可以认为是固定的，不用变，后两个参数分别是登录163邮箱的用户名以及客户端授权密码（注意，不是登录密码）  
-            trans.connect("smtp.163.com", 25, "sqc1986@163.com", "suqiancheng1986"); //连接邮箱smtp服务器，25为默认端口    
+            trans.connect("smtp.163.com", 25, "sqc1986@163.com", "xxxxxxxx"); //连接邮箱smtp服务器，25为默认端口    
             //要发送到哪个邮箱，这里以qq邮箱为例  
             trans.sendMessage(msg, new Address[]{new InternetAddress("271224258@qq.com")}); //发送邮件    
                 
