@@ -79,5 +79,9 @@
 	        <groupId>junit</groupId>  
 	        <artifactId>junit</artifactId>  
 	    </dependency>
-  </dependencies> 
+	    <dependency>
+	    	<groupId>redis.clients</groupId>
+	    	<artifactId>jedis</artifactId>
+	    </dependency>
+    </dependencies> 
 </project>
