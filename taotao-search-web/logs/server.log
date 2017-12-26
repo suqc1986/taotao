@@ -931,3 +931,7 @@ zookeeper state changed (SyncConnected)
 [INFO ] 2017-12-25 22:56:18,558 method:org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:508)
 FrameworkServlet 'taotao-search-web': initialization completed in 24142 ms
   
+
+[INFO ] 2017-12-25 23:30:34,987 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.56.1:20882,url:dubbo://192.168.56.1:20882/com.taotao.search.service.SearchService?anyhost=true&application=taotao-search-web&check=false&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.taotao.search.service.SearchService&methods=search&pid=9108&revision=0.0.1-SNAPSHOT&side=consumer&timeout=300000&timestamp=1514213768904, dubbo version: 2.5.3, current host: 192.168.56.1
+  
