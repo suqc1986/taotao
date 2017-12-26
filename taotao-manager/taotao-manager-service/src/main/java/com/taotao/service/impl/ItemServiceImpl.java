@@ -88,5 +88,10 @@ public class ItemServiceImpl implements ItemService {
 	        itemDesc.setUpdated(new Date());  
 	        //向商品描述表插入数据  
 	        itemDescMapper.insert(itemDesc);  
-	    }  
+	    }
+		@Override
+		public TbItemDesc getItemDescById(long itemId) {
+			TbItemDesc tbItemDesc = itemDescMapper.selectByPrimaryKey(itemId);
+			return tbItemDesc;
+		}  
 }
