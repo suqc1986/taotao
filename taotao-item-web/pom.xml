@@ -100,7 +100,11 @@
     <dependency>    
         <groupId>commons-fileupload</groupId>    
         <artifactId>commons-fileupload</artifactId>    
-    </dependency>   
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.activemq</groupId>
+    	<artifactId>activemq-all</artifactId>
+    </dependency>
   </dependencies>  
   <build>  
     <plugins>  
