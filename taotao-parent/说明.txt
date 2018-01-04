@@ -12,5 +12,6 @@ taotao-portal-web			8082		http://localhost:8082/
 工程显示格式:[{repository} {branch}{ branch_status}]
 
 
-
+启动顺序:
+taotao-manager、taotao-content、taotao-search、taotao-manager-web、taotao-portal-web、 taotao-search-web、taotao-item-web
 
