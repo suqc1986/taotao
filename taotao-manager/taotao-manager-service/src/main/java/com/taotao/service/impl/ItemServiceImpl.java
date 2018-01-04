@@ -119,7 +119,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public TaotaoResult createItem(TbItem tbItem, String desc) throws Exception{
 		//生成商品ID
-		long itemId = IDUtils.genItemId();
+		final long itemId = IDUtils.genItemId();
 		//补全item的属性
 		tbItem.setId(itemId);
 		//商品状态，1-正常，2-下架，3-删除
