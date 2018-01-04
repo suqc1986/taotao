@@ -70,6 +70,10 @@
         <artifactId>jsp-api</artifactId>  
         <scope>provided</scope>  
     </dependency>  
+    <dependency>  
+        <groupId>org.freemarker</groupId>  
+        <artifactId>freemarker</artifactId>  
+    </dependency>  
     <!-- dubbo相关的jar包 -->  
     <dependency>  
         <groupId>com.alibaba</groupId>  
