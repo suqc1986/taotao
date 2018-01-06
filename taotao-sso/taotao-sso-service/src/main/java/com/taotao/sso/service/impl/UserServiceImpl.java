@@ -121,4 +121,21 @@ public class UserServiceImpl implements UserService {
 		// 5.返回登录成功，要记得带回token信息
 		return TaotaoResult.ok(token);
 	}
+	
+	@Override  
+    public TaotaoResult getUserByToken(String token) {  
+        String json = jedisClient.get(USER_SESSION + ":" + token);  
+        if(StringUtils.isBlank(json)){  
+            return TaotaoResult.build(400, "token已过期！");  
+        }  
+        //如果我们直接把json返回的话，由于字符串中的"在redis中是有特殊意义的，因此  
+        //"会被转义，这不是我们想要的结果，我们想要的结果是不带转义符的字符串，因此我们  
+        //需要先把json转换成对象，然后把对象返回。  
+        TbUser user = JSON.parseObject(json, TbUser.class);  
+        //我们每访问一次该token，如果该token还没过期，我们便需要更新token的值，再把token恢复  
+        //到原来的最大值  
+        jedisClient.expire(USER_SESSION+":"+token, SESSION_EXPIRE);  
+        //返回结果  
+        return TaotaoResult.ok(user);  
+    }  
 }
