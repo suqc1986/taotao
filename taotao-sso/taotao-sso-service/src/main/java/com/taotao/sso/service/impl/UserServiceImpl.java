@@ -138,4 +138,10 @@ public class UserServiceImpl implements UserService {
         //返回结果  
         return TaotaoResult.ok(user);  
     }  
+	
+	@Override
+	public TaotaoResult logout(String token) {
+		jedisClient.expire(USER_SESSION=":"+token, 0);
+		return TaotaoResult.ok();
+	}
 }

@@ -8,4 +8,5 @@ public interface UserService {
 	TaotaoResult register(TbUser tbUser);
 	TaotaoResult login(String username,String password);
 	TaotaoResult getUserByToken(String token);
+	TaotaoResult logout(String token);
 }

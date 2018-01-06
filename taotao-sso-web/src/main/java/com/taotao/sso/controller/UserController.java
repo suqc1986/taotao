@@ -37,7 +37,7 @@ public class UserController {
 		return register;
 	}
 	
-	@RequestMapping(value = "/user/login",method = RequestMethod.POST)  
+	@RequestMapping(value = "/user/login")  
     @ResponseBody  
     public TaotaoResult login(String username,String password,  
             HttpServletRequest request,HttpServletResponse response){  
@@ -52,4 +52,11 @@ public class UserController {
         TaotaoResult result = userService.getUserByToken(token);  
         return result;  
     }  
+	
+	@RequestMapping(value = "/user/logout/{token}",method = RequestMethod.GET)  
+    @ResponseBody  
+    public TaotaoResult logout(@PathVariable String token){  
+        TaotaoResult result = userService.logout(token);  
+        return result;  
+    } 
 }
