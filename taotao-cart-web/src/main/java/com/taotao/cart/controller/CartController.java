@@ -111,4 +111,24 @@ public class CartController {
         //返回逻辑视图  
         return TaotaoResult.ok();  
     } 
+    
+    @RequestMapping("/cart/delete/{itemId}")  
+    public String deleteCartItem(@PathVariable Long itemId, HttpServletRequest request,  
+            HttpServletResponse response){  
+        //从cookie中取购物车列表  
+        List<TbItem> cartItemList = getCartItemList(request);  
+        //查询得到对应的商品  
+        for(TbItem tbItem : cartItemList){  
+            if(tbItem.getId() == itemId.longValue()){  
+                //删除商品  
+                cartItemList.remove(tbItem);  
+                break;  
+            }  
+        }  
+        //把购物车列表写入cookie  
+        CookieUtils.setCookie(request, response, CART_KEY, JSON.toJSONString(cartItemList),  
+                        CART_EXPIRE, true);  
+        //重定向到购物车列表页面  
+        return "redirect:/cart/cart.html";  
+    }  
 }  
