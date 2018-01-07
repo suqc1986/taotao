@@ -78,4 +78,14 @@ public class CartController {
         List<TbItem> list = JSON.parseArray(json, TbItem.class);  
         return list;  
     }  
+    
+    @RequestMapping("/cart/cart")  
+    public String showCartList(HttpServletRequest request){  
+        //从cookie中取购物车列表  
+        List<TbItem> cartItemList = getCartItemList(request);  
+        //把购物车列表传递给jsp  
+        request.setAttribute("cartList", cartItemList);  
+        //返回逻辑视图  
+        return "cart";  
+    }  
 }  
