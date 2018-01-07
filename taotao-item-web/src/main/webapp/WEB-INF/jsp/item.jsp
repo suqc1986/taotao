@@ -303,9 +303,8 @@
 	function addCart(){
 		// 加入购物车之前，取商品数量
 		var num = $("buy-num").val();
-		location.href="http://localhost:8095/cart/add/${item.id}.html?num=" + num;
-		
 		// 拼装url参数，做跳转
+		location.href="http://localhost:8089/cart/add/${item.id}.html?num=" + num;
 	}
 </script>
 </body>
