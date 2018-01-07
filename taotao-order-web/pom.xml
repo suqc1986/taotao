@@ -97,7 +97,12 @@
 	<dependency>  
         <groupId>commons-fileupload</groupId>  
         <artifactId>commons-fileupload</artifactId>  
-    </dependency> 
+    </dependency>
+	<dependency>
+		<groupId>com.taotao</groupId>
+		<artifactId>taotao-sso-interface</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
   </dependencies>
   <build>
   	<plugins>
