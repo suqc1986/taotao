@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;  
 import org.springframework.web.bind.annotation.PathVariable;  
 import org.springframework.web.bind.annotation.RequestMapping;  
-import org.springframework.web.bind.annotation.RequestParam;  
-  
-import com.alibaba.fastjson.JSON;  
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
+import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.CookieUtils;  
 import com.taotao.pojo.TbItem;  
 import com.taotao.service.ItemService;  
@@ -88,4 +90,25 @@ public class CartController {
         //返回逻辑视图  
         return "cart";  
     }  
+    
+    @RequestMapping("/cart/update/num/{itemId}/{num}")  
+    @ResponseBody  
+    public TaotaoResult updateItemNum(@PathVariable Long itemId,@PathVariable Integer num,  
+            HttpServletRequest request,HttpServletResponse response){  
+        //从cookie中取购物车列表  
+        List<TbItem> cartItemList = getCartItemList(request);  
+        //查询得到对应的商品  
+        for(TbItem tbItem : cartItemList){  
+            if(tbItem.getId() == itemId.longValue()){  
+                //更新商品数量  
+                tbItem.setNum(num);  
+                break;  
+            }  
+        }  
+        //把购物车列表写入cookie  
+        CookieUtils.setCookie(request, response, CART_KEY, JSON.toJSONString(cartItemList),  
+                        CART_EXPIRE, true);  
+        //返回逻辑视图  
+        return TaotaoResult.ok();  
+    } 
 }  
