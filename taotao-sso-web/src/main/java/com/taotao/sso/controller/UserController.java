@@ -3,6 +3,7 @@ package com.taotao.sso.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.CookieUtils;
 import com.taotao.pojo.TbUser;
@@ -48,12 +50,27 @@ public class UserController {
         }
         return result;  
     }  
-	@RequestMapping(value = "/user/token/{token}",method = RequestMethod.GET)  
-    @ResponseBody  
-    public TaotaoResult getUserByToken(@PathVariable String token){  
-        TaotaoResult result = userService.getUserByToken(token);  
-        return result;  
+	@RequestMapping(value = "/user/token/{token}",method = RequestMethod.GET)    
+    @ResponseBody    
+    public String getUserByToken(@PathVariable String token,String callback){    
+        TaotaoResult result = userService.getUserByToken(token);    
+        if(StringUtils.isNotBlank(callback)){  
+            return callback+"("+JSON.toJSONString(result)+");";  
+        }  
+        return JSON.toJSONString(result);    
     }  
+	
+//	@RequestMapping(value = "/user/token/{token}",method = RequestMethod.GET)    
+//    @ResponseBody    
+//    public Object getUserByToken(@PathVariable String token,String callback){    
+//        TaotaoResult result = userService.getUserByToken(token);    
+//        if(StringUtils.isNotBlank(callback)){  
+//            MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);  
+//            mappingJacksonValue.setJsonpFunction(callback);  
+//            return mappingJacksonValue;  
+//        }  
+//        return result;    
+//    }
 	
 	@RequestMapping(value = "/user/logout/{token}",method = RequestMethod.GET)  
     @ResponseBody  
