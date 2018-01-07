@@ -42,8 +42,10 @@ public class UserController {
     public TaotaoResult login(String username,String password,  
             HttpServletRequest request,HttpServletResponse response){  
         TaotaoResult result = userService.login(username, password);  
-        //把token写入到cookie  
-        CookieUtils.setCookie(request, response, TOKEN_KEY, result.getData()==null?"":result.getData().toString());  
+        if(result.getStatus()==200){
+        	//把token写入到cookie  
+        	CookieUtils.setCookie(request, response, TOKEN_KEY, result.getData().toString());  
+        }
         return result;  
     }  
 	@RequestMapping(value = "/user/token/{token}",method = RequestMethod.GET)  
