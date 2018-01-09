@@ -7,18 +7,27 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSON;
+import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.CookieUtils;
+import com.taotao.order.pojo.OrderInfo;
+import com.taotao.order.service.OrderService;
 import com.taotao.pojo.TbItem;
 
 @Controller
 public class OrderController {
 	@Value("${CART_KEY}")
     private String CART_KEY;
+	@Autowired
+	private OrderService orderService;
 	
 	@RequestMapping("/order/order-cart")
 	public String showOrderCart(HttpServletRequest request){
@@ -32,6 +41,21 @@ public class OrderController {
 		//返回逻辑视图
 		return "order-cart";
 	}
+	
+	@RequestMapping(value="/order/create",method=RequestMethod.POST)  
+    public String createOrder(OrderInfo orderInfo,Model model){  
+        //生成订单  
+        TaotaoResult result = orderService.createOrder(orderInfo);  
+        //返回逻辑视图  
+        model.addAttribute("orderId", result.getData().toString());  
+        model.addAttribute("payment", orderInfo.getPayment());  
+        //得到3天后的日期  
+        DateTime dateTime = new DateTime();  
+        dateTime = dateTime.plusDays(3);  
+        model.addAttribute("date", dateTime.toString("yyyy-MM-dd"));  
+        //返回逻辑视图  
+        return "success";  
+    }  
 	
 	private List<TbItem> getCartItemList(HttpServletRequest request){
 		//从cookie中取购物车商品列表
