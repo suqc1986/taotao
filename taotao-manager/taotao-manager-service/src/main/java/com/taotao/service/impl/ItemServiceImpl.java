@@ -130,14 +130,15 @@ public class ItemServiceImpl implements ItemService {
 		//添加商品描述
 		insertItemDesc(itemId, desc);
 		//发送activemq消息
-		jmsTemplate.send(destination,new MessageCreator() {
-			
-			@Override
-			public Message createMessage(Session session) throws JMSException {
-				TextMessage textMessage = session.createTextMessage(itemId+"");
-				return textMessage;
-			}
-		});
+//		jmsTemplate.send(destination,new MessageCreator() {
+//			
+//			@Override
+//			public Message createMessage(Session session) throws JMSException {
+//				TextMessage textMessage = session.createTextMessage(itemId+"");
+//				return textMessage;
+//			}
+//		});
+		jmsTemplate.convertAndSend(destination, itemId+"");//等价于上面注释内容
 		return TaotaoResult.ok();
 	}
 	
