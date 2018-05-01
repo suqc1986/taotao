@@ -5,10 +5,9 @@
     <artifactId>taotao-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.taotao</groupId>
   <artifactId>taotao-manager</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  
   <dependencies>  
     <dependency>  
         <groupId>com.taotao</groupId>  
@@ -17,9 +16,9 @@
     </dependency>  
   </dependencies>  
   <modules>
-  	<module>taotao-manager-dao</module>
   	<module>taotao-manager-pojo</module>
   	<module>taotao-manager-interface</module>
+  	<module>taotao-manager-dao</module>
   	<module>taotao-manager-service</module>
   </modules>
   <build>  
